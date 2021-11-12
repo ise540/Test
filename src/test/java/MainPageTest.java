@@ -10,6 +10,7 @@ public class MainPageTest {
     WebDriver driver;
     MainPage mainPage;
     LoginPage loginPage;
+    DesctopsPage desctopsPage;
 
     @BeforeMethod
     public void start() {
@@ -40,6 +41,13 @@ public class MainPageTest {
         mainPage = loginPage.auth(Config.EMAIL,Config.PASSWORD);
         Assert.assertEquals(mainPage.getProfileHead(), Config.PASSWORD);
 
+    }
+
+   @Test
+    public void descFilterTest() {
+        mainPage = new MainPage(driver);
+        desctopsPage = mainPage.goToDesctops();
+        desctopsPage.getPriceRangeSelector(desctopsPage.priceSelectors);
     }
 
     @AfterMethod

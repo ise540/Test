@@ -82,4 +82,16 @@ public class MainPage {
         return Arrays.asList("Camera, photo", "Cell phones");
     }
 
+    public DesctopsPage goToDesctops() {
+        dropdownComputers = new WebDriverWait(driver, Duration.ofSeconds(2))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@href='/computers']")));
+
+        Actions actions = new Actions(driver);
+
+        actions.moveToElement(dropdownComputers).build().perform();
+
+        driver.findElement(By.xpath("// a[@href='/desktops'] ")).click();
+
+        return new DesctopsPage(driver);
+    }
 }

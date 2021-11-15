@@ -32,13 +32,14 @@ public class MainPageTest {
         Assert.assertEquals(mainPage.getArrayElectronics(), mainPage.expectedArrayElectronics());
     }
 
-    @Test
-    public void authTest() {
+    @Test(dataProvider = "auth-data", dataProviderClass = Config.class)
+    public void authTest(String login, String pass) {
         mainPage = new MainPage(driver);
         mainPage.goToMainPage();
         loginPage = mainPage.goToLogin();
-        mainPage = loginPage.auth(Config.EMAIL,Config.PASSWORD);
-        Assert.assertEquals(mainPage.getProfileHead(), Config.PASSWORD);
+        mainPage = loginPage.auth(login, pass);
+        Assert.assertEquals(mainPage.getProfileHead(), login);
+
 
     }
 
